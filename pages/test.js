@@ -6,7 +6,7 @@ function UserList() {
   
     useEffect(() => {
       // FlaskのAPIエンドポイントを指定します
-      const apiEndpoint = 'https://projectprojectkeita.azurewebsites.net/incomes';
+      const apiEndpoint = 'https://projectprojectkeita.azurewebsites.net/test';
   
       fetch(apiEndpoint)
         .then(response => response.json())
