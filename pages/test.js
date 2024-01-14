@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { BlobServiceClient } from "@azure/storage-blob";
 import axios from "axios";
+import Image from 'next/image';
+
 
 function UserList() {
     const [users, setUsers] = useState([]);
