@@ -1,11 +1,12 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
+import Script from 'next/script'
 
 class MyDocument extends Document {
   render() {
     return (
       <Html>
         <Head>
-        <script src="https://kit.fontawesome.com/a4c00a89bc.js" crossorigin="anonymous" />
+        <Script src="https://kit.fontawesome.com/a076d05399.js" strategy="beforeInteractive" />
         </Head>
         <body>
           <Main />
