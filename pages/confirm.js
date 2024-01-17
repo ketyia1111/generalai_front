@@ -41,7 +41,7 @@ export default function Home() {
       <div className={styles.container}>
         <h2>日記をあなたの状況に合わせて修正してください</h2>
         <div className={styles.formGroup}>
-          <label htmlFor="name">名前</label> 
+          <label htmlFor="name">名前</label>
           <input type="text" className={`form-control ${styles.inputElement}`} id="name" value={name} onChange={(e) => setName(e.target.value)} />
           <label htmlFor="example" className={styles.labelText}>入力情報を元に日記を生成しました。修正してください</label>
           <textarea className={`form-control ${styles.inputElement}`} id="example" rows="10" value={textAreaValue} onChange={(e) => setTextAreaValue(e.target.value)} />
