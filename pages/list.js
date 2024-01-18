@@ -55,7 +55,11 @@ const ListPage = () => {
                         <h3>{formatDate(item.created_at)} {item.username}さんの投稿</h3>
                         {base64Images[item.image_name] && <Image src={`data:image/jpeg;base64,${base64Images[item.image_name]}`} alt="Diary image" width={500} height={300} />}
                         <p className={styles.text}>{item.diaries}</p>
-                        <hr/>
+                        <p className={styles.tag}>この記事は「{item.ana_result}」です。<br/>
+                        肯定度「{item.ana_positive}」<br/>
+                        中立度は「{item.ana_neutral}」<br/>
+                        否定度は「{item.ana_negative}」</p>
+                        <hr />
                     </div>
                 ))}
                 {currentPage > 1 && (

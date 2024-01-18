@@ -15,11 +15,30 @@
   height: auto;
 }
 
+.tag {
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  background: #3d4046;  /* 背景色 */
+  color: #FFF;  /* 文字色 */
+  border-bottom: solid 4px #627295;  /* 線 */
+  border-radius: 3px;  /* 角丸 */
+  transition: .4s;  /* なめらか変化 */
+}
+
+.tag:hover {
+  background: #8e8e8e;  /* マウスオーバー時の背景色 */
+  border-bottom: solid 4px #797979;  /* マウスオーバー時の線 */
+}
+
 @media (min-width: 768px) {
   .post img {
     max-width: 50%;
   }
   .text{
     width: 800px;
+  }
+  .tag {
+    font-size: 0.8em;
   }
 }
