@@ -29,9 +29,9 @@ export default function Home() {
     try {
       const response = await axios.post('https://projectprojectkeita.azurewebsites.net/api/generalai/complete', { name: name, text: textAreaValue });
       setTextAreaValue(response.data.example);
-      if (response.data === "positive") {
+      if (response.data.example === "positive") {
         router.push('/positive');
-    } else if (response.data === "negative") {
+    } else if (response.data.example === "negative") {
         router.push('/negative');
     } else {
         router.push('/mixed');
