@@ -9,7 +9,7 @@ export default function Complete() {
       <Navbar />
       <div className={styles.container}>
         <p className={styles.message}>登録ありがとうございます。
-          <br />今日はfalseorpositiveな日だったんですね。message<br />
+          <br />今日は素敵な日だったんですね。とても素晴らしいです！<br />
           早速投稿された絵日記を確認しに行きましょう
         </p>
         <Link href="/list">
