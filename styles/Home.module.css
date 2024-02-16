@@ -52,6 +52,20 @@
   cursor: pointer;
 }
 
+.submitButton2 {
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center; /* アイコンを中央に配置 */
+}
+
+.submitButton2 img {
+  margin-right: 10px; /* アイコンとテキストの間隔を調整 */
+}
+
 
 @media (max-width: 768px) {
   .form {

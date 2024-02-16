@@ -7,7 +7,8 @@ import styles from '../styles/Home.module.css';
 
 export default function Home() {
   const [textAreaValue, setTextAreaValue] = useState('');
-  const [name, setName] = useState(''); // 名前のstateを追加
+  const [name, setName] = useState('');
+  const [loading, setLoading] = useState(false); // ローディング状態を追加
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,7 +20,6 @@ export default function Home() {
       }
     };
 
-
     fetchData();
   }, []);
 
@@ -27,17 +27,20 @@ export default function Home() {
 
   const handleUpdate = async () => {
     try {
+      setLoading(true); // ローディング開始
       const response = await axios.post('https://projectprojectkeita.azurewebsites.net/api/generalai/complete', { name: name, text: textAreaValue });
       setTextAreaValue(response.data.example);
-      if (response.data.example === "positive") {
+      if (response.data.example === 'positive') {
         router.push('/positive');
-    } else if (response.data.example === "negative") {
+      } else if (response.data.example === 'negative') {
         router.push('/negative');
-    } else {
+      } else {
         router.push('/mixed');
-    }
+      }
     } catch (error) {
       console.error('Error updating data:', error);
+    } finally {
+      setLoading(false); // ローディング終了
     }
   };
 
@@ -48,10 +51,30 @@ export default function Home() {
         <h2>日記をあなたの状況に合わせて修正してください</h2>
         <div className={styles.formGroup}>
           <label htmlFor="name">名前</label>
-          <input type="text" className={`form-control ${styles.inputElement}`} id="name" value={name} onChange={(e) => setName(e.target.value)} />
-          <label htmlFor="example" className={styles.labelText}>入力情報を元に日記を生成しました。修正してください</label>
-          <textarea className={`form-control ${styles.inputElement}`} id="example" rows="10" value={textAreaValue} onChange={(e) => setTextAreaValue(e.target.value)} />
-          <button className={`btn btn-primary ${styles.submitButton}`} onClick={handleUpdate}>作成</button>
+          <input
+            type="text"
+            className={`form-control ${styles.inputElement}`}
+            id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <label htmlFor="example" className={styles.labelText}>
+            入力情報を元に日記を生成しました。修正してください
+          </label>
+          <textarea
+            className={`form-control ${styles.inputElement}`}
+            id="example"
+            rows="10"
+            value={textAreaValue}
+            onChange={(e) => setTextAreaValue(e.target.value)}
+          />
+          <button
+            className={`btn btn-primary ${styles.submitButton2}`}
+            onClick={handleUpdate}
+            disabled={loading} // ローディング中はボタンを非活性に
+          >
+            {loading ? 'ローディング中...' : '作成'}
+          </button>
         </div>
       </div>
     </div>
