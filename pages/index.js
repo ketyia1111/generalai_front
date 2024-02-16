@@ -14,6 +14,8 @@ export default function Home() {
     oneWord: ''
   });
 
+  const [loading, setLoading] = useState(false); // Add loading state
+
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -31,14 +33,22 @@ export default function Home() {
       }
     }
 
-    const response = await fetch('https://projectprojectkeita.azurewebsites.net/api', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formState),
-    });
-    const data = await response.json();
-    console.log(data);
-    router.push('/confirm');
+    setLoading(true);
+
+    try {
+      const response = await fetch('https://projectprojectkeita.azurewebsites.net/api', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formState),
+      });
+      const data = await response.json();
+      console.log(data);
+      router.push('/confirm');
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    } finally {
+      setLoading(false); // Set loading state back to false
+    }
   };
 
   return (
@@ -111,7 +121,9 @@ export default function Home() {
             placeholder="一言で表すと"
             className={styles.inputElement}
           />
-          <button type="submit" className={styles.submitButton}>送信</button>
+          <button type="submit" className={styles.submitButton} disabled={loading}>
+            {loading ? '送信中...' : '送信'}
+          </button>
         </form>
       </div>
     </div>
