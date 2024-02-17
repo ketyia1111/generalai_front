@@ -46,28 +46,35 @@ const ListPage = () => {
     }, [items]);
 
     return (
-        <div>
-            <Navbar />
-            <div className={styles.post}>
+            <div>
+                <Navbar />
+                 <div className={styles.post}>
                 <h1>投稿日記一覧画面</h1>
                 {items.map((item) => (
                     <div key={item.id} className={styles.post}>
-                        <h3>{formatDate(item.created_at)} {item.username}さんの投稿</h3>
-                        {base64Images[item.image_name] && <Image src={`data:image/jpeg;base64,${base64Images[item.image_name]}`} alt="Diary image" width={500} height={300} />}
-                        <p className={styles.text}>{item.diaries}</p>
-                        <p className={styles.tag}>この記事は「{item.ana_result}」です。<br/>
-                        肯定度「{item.ana_positive}」<br/>
-                        中立度は「{item.ana_neutral}」<br/>
-                        否定度は「{item.ana_negative}」</p>
+                        <div className={styles.content}>
+                            {base64Images[item.image_name] && <Image src={`data:image/jpeg;base64,${base64Images[item.image_name]}`} alt="Diary image" width={500} height={300} />}
+                            <div className={styles.textContainer}>
+                                <h3>{formatDate(item.created_at)} {item.username}さんの投稿</h3>
+                                <p className={styles.text}>{item.diaries}</p>
+                                <p className={styles.tag}>この記事は「{item.ana_result}」です。<br/>
+                                肯定度「{item.ana_positive}」<br/>
+                                中立度は「{item.ana_neutral}」<br/>
+                                否定度は「{item.ana_negative}」</p>
+                            </div>
+                        </div>
                         <hr />
                     </div>
                 ))}
+                <div className="buttons">
                 {currentPage > 1 && (
-                    <button onClick={() => fetchData(currentPage - 1)}>前へ</button>
-                )}
-                {items.length === 10 && (
-                    <button onClick={() => fetchData(currentPage + 1)}>次へ</button>
-                )}
+    <button className={styles.button} style={{ marginRight: '10px' }} onClick={() => fetchData(currentPage - 1)}>前へ</button>
+)}
+{items.length === 10 && (
+    <button className={styles.button} onClick={() => fetchData(currentPage + 1)}>次へ</button>
+)}
+</div>
+
             </div>
         </div>
     );
