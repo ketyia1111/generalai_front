@@ -36,7 +36,7 @@ export default function Home() {
     setLoading(true);
 
     try {
-      const response = await fetch('https://projectprojectkeita.azurewebsites.net/api', {
+      const response = await fetch(process.env.NEXT_PUBLIC_API_URL , {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formState),

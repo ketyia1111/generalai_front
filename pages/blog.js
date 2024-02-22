@@ -9,12 +9,12 @@ const BlogList = () => {
   const [base64Images, setBase64Images] = useState({});
 
   const fetchData = async () => {
-    const result = await axios.get('https://projectprojectkeita.azurewebsites.net/blogs');
+    const result = await axios.get(process.env.NEXT_PUBLIC_BLOGS_URL);
     setBlogs(result.data.blogs);
   };
 
   const fetchImage = async (imageName) => {
-    const imageUrl = `https://projectkeita.blob.core.windows.net/blogs/${imageName}`;
+    const imageUrl = `${process.env.NEXT_PUBLIC_BLOGS_IMAGE_BASE_URL}/${imageName}`;
 
     axios.get(imageUrl, { responseType: 'arraybuffer' })
       .then(response => {

@@ -15,13 +15,13 @@ const ListPage = () => {
     };
 
     const fetchData = async (page) => {
-        const result = await axios.get(`https://projectprojectkeita.azurewebsites.net/api/list/${page}`);
+        const result = await axios.get(`${process.env.NEXT_PUBLIC_API_LIST_BASE_URL}/${page}`);
         setItems(result.data.items);
         setCurrentPage(page);
     };
 
     const fetchImage = async (imageName) => {
-        const imageUrl = `https://projectkeita.blob.core.windows.net/images/${imageName}`;
+        const imageUrl = `${process.env.NEXT_PUBLIC_IMAGES_BASE_URL}/${imageName}`;
 
         axios.get(imageUrl, { responseType: 'arraybuffer' })
             .then(response => {
