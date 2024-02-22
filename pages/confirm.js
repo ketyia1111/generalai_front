@@ -13,7 +13,7 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://projectprojectkeita.azurewebsites.net/api/generalai');
+        const response = await axios.get(process.env.NEXT_PUBLIC_GENERAL_AI_URL);
         setTextAreaValue(response.data.example);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -28,7 +28,7 @@ export default function Home() {
   const handleUpdate = async () => {
     try {
       setLoading(true); // ローディング開始
-      const response = await axios.post('https://projectprojectkeita.azurewebsites.net/api/generalai/complete', { name: name, text: textAreaValue });
+      const response = await axios.post(process.env.NEXT_PUBLIC_GENERAL_AI_COMPLETE_URL, { name: name, text: textAreaValue });
       setTextAreaValue(response.data.example);
       if (response.data.example === 'positive') {
         router.push('/positive');
